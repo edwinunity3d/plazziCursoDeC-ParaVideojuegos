@@ -9,7 +9,15 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 6f;
 
     private Rigidbody2D playerRigidbody;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
+/// <summary>
+/// Awake is called when the script instance is being loaded.
+/// </summary>
+private void Awake()
+{
+    playerRigidbody = GetComponent<Rigidbody2D>();
+}
+
     void Start()
     {
         
@@ -18,11 +26,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Space)||  Input.GetMouseButtonDown(0))
+        {
+            Jump();
+        }
     }
 
     void Jump()
     {
+        playerRigidbody.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse );
 
     }
 }
