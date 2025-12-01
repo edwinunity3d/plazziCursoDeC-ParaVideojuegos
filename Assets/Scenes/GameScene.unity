@@ -280,7 +280,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.055743694, y: -0.0467124}
   m_Size: {x: 0.8314285, y: 2.6213384}
   m_Direction: 0
---- !u!1001 &6529377375437991481
+--- !u!1001 &1677483940
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -294,11 +294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2846112204516789448, guid: 7d8ba34161bc4e944987e375c52807a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.0871067
+      value: -5.23
       objectReference: {fileID: 0}
     - target: {fileID: 2846112204516789448, guid: 7d8ba34161bc4e944987e375c52807a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3205585
+      value: -4.49
       objectReference: {fileID: 0}
     - target: {fileID: 2846112204516789448, guid: 7d8ba34161bc4e944987e375c52807a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -406,4 +406,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 6898738160524663694}
-  - {fileID: 6529377375437991481}
+  - {fileID: 1677483940}
