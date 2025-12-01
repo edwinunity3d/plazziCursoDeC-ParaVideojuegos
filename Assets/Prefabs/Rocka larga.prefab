@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7311014435779155366}
   - component: {fileID: 3767945534633578489}
   - component: {fileID: 6801191173109969561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rocka larga
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 6f;
 
     private Rigidbody2D playerRigidbody;
+
+    public LayerMask groundMask;
+    [SerializeField, Range(0,20)] private float distRay =2f;
    
 /// <summary>
 /// Awake is called when the script instance is being loaded.
@@ -26,7 +30,7 @@ private void Awake()
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)||  Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space)||  Input.GetMouseButtonDown(0))
         {
             Jump();
         }
@@ -34,7 +38,22 @@ private void Awake()
 
     void Jump()
     {
-        playerRigidbody.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse );
+        if (isTouchingTheGround())
+        {
+              playerRigidbody.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse );
+        }
+  
 
+    }
+    bool isTouchingTheGround()
+    {
+        if(Physics2D.Raycast(this.transform.position,Vector2.down, distRay, groundMask))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

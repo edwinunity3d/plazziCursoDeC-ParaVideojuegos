@@ -293,7 +293,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 0.1
+  jumpForce: 8
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  distRay: 1.4
 --- !u!1001 &1677483940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 2077798703774693234, guid: 7d8ba34161bc4e944987e375c52807a5, type: 3}
       propertyPath: m_Name
       value: Plataforma - larga
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077798703774693234, guid: 7d8ba34161bc4e944987e375c52807a5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2846112204516789448, guid: 7d8ba34161bc4e944987e375c52807a5, type: 3}
       propertyPath: m_LocalPosition.x

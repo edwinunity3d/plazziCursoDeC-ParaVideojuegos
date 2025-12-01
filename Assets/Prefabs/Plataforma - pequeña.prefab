@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8469510329495277824}
   - component: {fileID: 8006362679294121307}
   - component: {fileID: 5369032104558617409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "Plataforma - peque\xF1a"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
