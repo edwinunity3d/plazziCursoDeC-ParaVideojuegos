@@ -60,7 +60,7 @@ private void Awake()
     {
         if(Physics2D.Raycast(this.transform.position,Vector2.down , distRay, groundMask))
         {
-           animator.enabled = true;
+           //animator.enabled = true;
            Debug.Log("Está tocando el piso");
             return true;
 
@@ -68,7 +68,7 @@ private void Awake()
         }
         else
         {
-            animator.enabled = false;
+           // animator.enabled = false;
             return false;
         }
     }
