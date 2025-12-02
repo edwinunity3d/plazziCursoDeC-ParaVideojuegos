@@ -34,6 +34,8 @@ private void Awake()
         {
             Jump();
         }
+
+        Debug.DrawRay(this.transform.position, Vector3.down * distRay, Color.red  );
     }
 
     void Jump()
@@ -47,7 +49,7 @@ private void Awake()
     }
     bool isTouchingTheGround()
     {
-        if(Physics2D.Raycast(this.transform.position,Vector2.down, distRay, groundMask))
+        if(Physics2D.Raycast(this.transform.position,Vector2.down * distRay, groundMask))
         {
             return true;
         }
@@ -55,5 +57,10 @@ private void Awake()
         {
             return false;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        
     }
 }
