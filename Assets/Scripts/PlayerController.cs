@@ -70,6 +70,8 @@ private void Awake()
         {
            //animator.enabled = true;
            Debug.Log("Está tocando el piso");
+
+         
             return true;
 
             
