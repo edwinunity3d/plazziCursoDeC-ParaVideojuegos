@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     //variables del movimiento del personaje
-    public float speed = 5;
+    public float runningSpeed = 5;
 
     //variables del salto del personaje
     public float jumpForce = 6f;
@@ -47,6 +47,13 @@ private void Awake()
       
     }
 
+    void FixedUpdate()
+    {
+        if(playerRigidbody.linearVelocity.x < runningSpeed)
+        {
+            playerRigidbody.linearVelocity = new Vector2(runningSpeed, playerRigidbody.linearVelocity.y);
+        }
+    }
     void Jump()
     {
         if (isTouchingTheGround())
