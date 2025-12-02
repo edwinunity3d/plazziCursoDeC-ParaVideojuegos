@@ -53,6 +53,7 @@ private void Awake()
         {
             playerRigidbody.linearVelocity = new Vector2(runningSpeed, playerRigidbody.linearVelocity.y);
         }
+      // move();
     }
     void Jump()
     {
@@ -80,6 +81,18 @@ private void Awake()
         }
     }
 
+ private void move()
+    {
+        playerRigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal")* runningSpeed , playerRigidbody.linearVelocity.y );
+        if(Input.GetAxis("Horizontal")< 0)
+        {
+            GetComponent<SpriteRenderer>().flipX =true;
+        }
+        if(Input.GetAxis("Horizontal")> 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
     void OnDrawGizmos()
     {
         
