@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator  animator;
 
-    private const string STATE_ALIVE = "isalive";
+    private const string STATE_ALIVE = "isAlive";
     private const string STATE_ON_THE_GROUND = "isOnTheGround";
    
 /// <summary>
@@ -65,10 +65,14 @@ private void Awake()
     }
     void Jump()
     {
-        if (isTouchingTheGround())
+        if(GameManager.singleton.currentGameState == GameState.inGame)
+        {
+            if (isTouchingTheGround())
         {
               playerRigidbody.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse );
         }
+        }
+        
   
 
     }
@@ -77,7 +81,7 @@ private void Awake()
         if(Physics2D.Raycast(this.transform.position,Vector2.down , distRay, groundMask))
         {
            //animator.enabled = true;
-           Debug.Log("Está tocando el piso");
+         
 
          
             return true;
@@ -106,5 +110,11 @@ private void Awake()
     void OnDrawGizmos()
     {
         
+    }
+
+    public void Die()
+    {
+        this.animator.SetBool(STATE_ALIVE, false);
+        GameManager.singleton.GameOver();
     }
 }
