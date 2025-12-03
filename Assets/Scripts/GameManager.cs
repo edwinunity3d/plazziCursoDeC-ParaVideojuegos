@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     public GameState currentGameState = GameState.menu;
 
+    private PlayerController controller;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -29,13 +31,13 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        controller = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(Input.GetButtonDown("Submit"))
+      if(Input.GetButtonDown("Submit") &&  currentGameState != GameState.inGame)
         {
             StartGame();
         }
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SetGameState(GameState.inGame);
+
     }
 
 
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour
             
         }else if(newGameState == GameState.inGame)
         {
-            
+            controller.StartGame();
         }
         else if(newGameState == GameState.gameOver)
         {

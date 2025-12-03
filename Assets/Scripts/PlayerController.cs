@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,8 +18,11 @@ public class PlayerController : MonoBehaviour
 
     private Animator  animator;
 
+    Vector3 startPosition; 
+
     private const string STATE_ALIVE = "isAlive";
     private const string STATE_ON_THE_GROUND = "isOnTheGround";
+    [SerializeField, Range(0,10)] private float timeRevivir;
    
 /// <summary>
 /// Awake is called when the script instance is being loaded.
@@ -31,8 +35,9 @@ private void Awake()
 
     void Start()
     {
-        animator.SetBool(STATE_ALIVE, true);
-        animator.SetBool(STATE_ON_THE_GROUND, isTouchingTheGround());
+       
+
+        startPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -46,7 +51,7 @@ private void Awake()
         Debug.DrawRay(this.transform.position, Vector3.down * distRay, Color.red  );
       
     }
-
+  
     void FixedUpdate()
     {
         if (GameManager.singleton.currentGameState == GameState.inGame)
@@ -62,6 +67,20 @@ private void Awake()
         }
         
       // move();
+    }
+
+   public  void StartGame()
+    {
+          animator.SetBool(STATE_ALIVE, true);
+        animator.SetBool(STATE_ON_THE_GROUND, isTouchingTheGround());
+       
+          Invoke("RestarPosition", timeRevivir );
+    }
+        void RestarPosition()
+    {
+       
+       this.transform.position = startPosition;
+        this.playerRigidbody.linearVelocity = Vector2.zero;
     }
     void Jump()
     {
