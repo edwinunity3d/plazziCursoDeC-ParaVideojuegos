@@ -38,7 +38,7 @@ private void Awake()
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)||  Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
@@ -49,10 +49,18 @@ private void Awake()
 
     void FixedUpdate()
     {
-        if(playerRigidbody.linearVelocity.x < runningSpeed)
+        if (GameManager.singleton.currentGameState == GameState.inGame)
         {
+            if(playerRigidbody.linearVelocity.x < runningSpeed)
+           {
             playerRigidbody.linearVelocity = new Vector2(runningSpeed, playerRigidbody.linearVelocity.y);
+            }
         }
+        else
+        {
+            playerRigidbody.linearVelocity = new Vector2(0,playerRigidbody.linearVelocity.y);
+        }
+        
       // move();
     }
     void Jump()
