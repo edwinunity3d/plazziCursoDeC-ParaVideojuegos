@@ -72,7 +72,7 @@ private void Awake()
    public  void StartGame()
     {
           animator.SetBool(STATE_ALIVE, true);
-        animator.SetBool(STATE_ON_THE_GROUND, isTouchingTheGround());
+          animator.SetBool(STATE_ON_THE_GROUND, isTouchingTheGround());
        
           Invoke("RestarPosition", timeRevivir );
     }
