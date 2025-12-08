@@ -81,6 +81,8 @@ private void Awake()
        
        this.transform.position = startPosition;
         this.playerRigidbody.linearVelocity = Vector2.zero;
+         GameObject mainCamera = GameObject.Find("Main Camera");
+         mainCamera.GetComponent<CameraFollow>().ResetCamearaPostion();
     }
     void Jump()
     {
@@ -116,7 +118,8 @@ private void Awake()
 
  private void move()
     {
-        playerRigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal")* runningSpeed , playerRigidbody.linearVelocity.y );
+        playerRigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal")*
+                                         runningSpeed , playerRigidbody.linearVelocity.y );
         if(Input.GetAxis("Horizontal")< 0)
         {
             GetComponent<SpriteRenderer>().flipX =true;

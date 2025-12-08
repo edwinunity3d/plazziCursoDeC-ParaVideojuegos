@@ -1,6 +1,7 @@
-using System;
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Collections;
+
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class LevelManager : MonoBehaviour
 
     public List<LevelBlock> currentLevelBlocks = new List<LevelBlock>();
     public Transform LevelStartPosition;
+   
 
 
     void Awake()
@@ -36,19 +38,47 @@ public class LevelManager : MonoBehaviour
 
     public void AddLeveBlock()
     {
-        
+        int randomIdx = Random.Range(0, allTheLevelBlocks.Count);
+
+        LevelBlock block;
+        Vector3 spawnPosition = Vector3.zero;
+
+        if(currentLevelBlocks.Count == 0)
+        {
+            block = Instantiate(allTheLevelBlocks[0]);
+            spawnPosition = LevelStartPosition.position;
+        }
+        else
+        {
+            block = Instantiate(allTheLevelBlocks[randomIdx]);
+            spawnPosition = currentLevelBlocks[currentLevelBlocks.Count-1].exitPoint.position;
+        }
+
+        block.transform.SetParent(this.transform,  false);
+
+        Vector3 correction = new Vector3(spawnPosition.x-block.startPoint.position.x,
+         spawnPosition.y - block.startPoint.position.y,0);
+
+         block.transform.position = correction;
+         currentLevelBlocks.Add(block);
     }
 
 
-    public void removeLevelBlock()
+
+    public void RemoveLevelBlock()
     {
-        
+        LevelBlock oldBlock = currentLevelBlocks[0];
+        currentLevelBlocks.Remove(oldBlock);
+        Destroy(oldBlock.gameObject);
     }
 
 
     public void RemoveAllLevelBlocks()
     {
-        
+        while(currentLevelBlocks.Count > 0)
+        {
+            RemoveLevelBlock();
+        }
     }
 
     public void  GenerateInitialBlocks()

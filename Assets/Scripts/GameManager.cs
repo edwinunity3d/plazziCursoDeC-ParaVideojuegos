@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
             
         }else if(newGameState == GameState.inGame)
         {
+            LevelManager.singleton.RemoveAllLevelBlocks();
+            LevelManager.singleton.GenerateInitialBlocks();
             controller.StartGame();
         }
         else if(newGameState == GameState.gameOver)
@@ -77,6 +79,11 @@ public class GameManager : MonoBehaviour
         }
 
         this.currentGameState = newGameState;
+    }
+
+    void ReloadLevel()
+    {
+        
     }
 
 }
