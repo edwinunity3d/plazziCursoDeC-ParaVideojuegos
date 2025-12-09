@@ -1624,6 +1624,7 @@ GameObject:
   - component: {fileID: 1053650506}
   - component: {fileID: 1053650505}
   - component: {fileID: 1053650504}
+  - component: {fileID: 1053650508}
   m_Layer: 5
   m_Name: CanvasStats
   m_TagString: Untagged
@@ -1707,8 +1708,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1805719592}
-  - {fileID: 1011689675}
   - {fileID: 1170025274}
+  - {fileID: 1011689675}
   - {fileID: 717532438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1717,6 +1718,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1053650508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053650503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6c6ee3d490bfa4b99798e6f1fb92dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cointText: {fileID: 1170025277}
+  scoreText: {fileID: 1805719593}
+  maxScoreText: {fileID: 1011689678}
 --- !u!1 &1170025273
 GameObject:
   m_ObjectHideFlags: 0
