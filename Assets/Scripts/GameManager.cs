@@ -66,16 +66,17 @@ public class GameManager : MonoBehaviour
     {
         if(newGameState == GameState.menu)
         {
-            
+            MenuManager.singleton.ShowMainMenu();
         }else if(newGameState == GameState.inGame)
         {
             LevelManager.singleton.RemoveAllLevelBlocks();
             LevelManager.singleton.GenerateInitialBlocks();
             controller.StartGame();
+            MenuManager.singleton.HideMainMenu();
         }
         else if(newGameState == GameState.gameOver)
         {
-            
+            MenuManager.singleton.ShowMainMenu();
         }
 
         this.currentGameState = newGameState;
