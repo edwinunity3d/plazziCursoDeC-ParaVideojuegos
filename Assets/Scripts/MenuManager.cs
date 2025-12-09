@@ -4,6 +4,8 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public Canvas menuCanvas;
+    public Canvas gameCanvas;
+    public Canvas gameOverCanvas;
 
     public static MenuManager singleton;
 
@@ -29,7 +31,28 @@ public class MenuManager : MonoBehaviour
     {
         
     }
+    public void ShowCanvasGame()
+    {
+        gameCanvas.enabled = true;
+        Debug.Log("se activa en canvas del juego");
+    }
+    public void HideCanvasGame()
+    {
+        gameCanvas.enabled = false;
+    }
 
+    public void ShowCanvasGameOver()
+    {
+        gameOverCanvas.enabled = true;
+
+    }
+
+    public void HidecanvasGameOver()
+    {
+        gameOverCanvas.enabled = false;
+    }
+
+    
     // Update is called once per frame
     void Update()
     {

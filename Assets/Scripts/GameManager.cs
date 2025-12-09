@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 
 public enum GameState
@@ -66,17 +67,26 @@ public class GameManager : MonoBehaviour
     {
         if(newGameState == GameState.menu)
         {
+            MenuManager.singleton.HideCanvasGame();
+            MenuManager.singleton.HidecanvasGameOver();
             MenuManager.singleton.ShowMainMenu();
+            
         }else if(newGameState == GameState.inGame)
         {
             LevelManager.singleton.RemoveAllLevelBlocks();
             LevelManager.singleton.GenerateInitialBlocks();
             controller.StartGame();
             MenuManager.singleton.HideMainMenu();
+            MenuManager.singleton.HidecanvasGameOver();
+            MenuManager.singleton.ShowCanvasGame();
         }
         else if(newGameState == GameState.gameOver)
         {
-            MenuManager.singleton.ShowMainMenu();
+            
+            
+            MenuManager.singleton.HideCanvasGame();
+            MenuManager.singleton.HideMainMenu();
+            MenuManager.singleton.ShowCanvasGameOver();
         }
 
         this.currentGameState = newGameState;
