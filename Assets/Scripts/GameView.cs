@@ -15,7 +15,7 @@ public class GameView : MonoBehaviour
     {
         if(GameManager.singleton.currentGameState == GameState.inGame)
         {
-            int coins = 0;
+            int coins = GameManager.singleton.collectedObject;
             float score = 0;
             float maxScore = 0;
 

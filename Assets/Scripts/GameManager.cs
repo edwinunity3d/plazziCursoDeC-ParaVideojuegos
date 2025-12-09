@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     private PlayerController controller;
 
+    public  int collectedObject = 0;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -96,5 +98,8 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
+    public void CollectObject(Collectable collectable)
+    {
+        collectedObject += collectable.value;
+    }
 }

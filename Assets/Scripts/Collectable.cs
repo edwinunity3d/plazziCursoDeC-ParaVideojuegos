@@ -55,6 +55,7 @@ public class Collectable : MonoBehaviour
         switch (this.type)
         {
             case CollectableType.money:
+            GameManager.singleton.CollectObject(this);
             break;
             case CollectableType.healthPotion:
             break;
