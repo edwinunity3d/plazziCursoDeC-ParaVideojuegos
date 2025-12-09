@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using UnityEditor.Scripting;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +25,11 @@ public class PlayerController : MonoBehaviour
     private const string STATE_ALIVE = "isAlive";
     private const string STATE_ON_THE_GROUND = "isOnTheGround";
     [SerializeField, Range(0,10)] private float timeRevivir;
+
+    private int healthPoints, manaPoints;
+
+    public const int INITIAL_HEALTH = 100, INITIAL_MANA = 15, MAX_HEALTH = 200, 
+                                     MAX_MANA = 30 , MIN_HEALTH = 10 , MIN_MANA = 0;
    
 /// <summary>
 /// Awake is called when the script instance is being loaded.
@@ -74,6 +81,8 @@ private void Awake()
           animator.SetBool(STATE_ALIVE, true);
           animator.SetBool(STATE_ON_THE_GROUND, isTouchingTheGround());
        
+          healthPoints = INITIAL_HEALTH;
+          manaPoints = INITIAL_MANA;
           Invoke("RestarPosition", timeRevivir );
     }
         void RestarPosition()
@@ -138,5 +147,33 @@ private void Awake()
     {
         this.animator.SetBool(STATE_ALIVE, false);
         GameManager.singleton.GameOver();
+    }
+
+    public void CollectHealth(int points)
+    {
+
+        this.healthPoints += points;
+        if(this.healthPoints >= MAX_HEALTH)
+        {
+            this.healthPoints = MAX_HEALTH;
+        }
+    }
+    public void CollectMana(int mana)
+    {
+        this.manaPoints += mana;
+        if(this.manaPoints >= MAX_MANA)
+        {
+            this.manaPoints = MAX_MANA;
+        }
+    }
+
+    public int GetHealth()
+    {
+        return healthPoints;
+    }
+
+    public int GetMana()
+    {
+        return manaPoints;
     }
 }
