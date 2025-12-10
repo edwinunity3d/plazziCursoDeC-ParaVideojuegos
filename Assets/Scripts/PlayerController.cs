@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0,10)] private float timeRevivir;
 
     private int healthPoints, manaPoints;
+    public float jumpForceFactor;
 
     public const int INITIAL_HEALTH = 100, INITIAL_MANA = 15, MAX_HEALTH = 200, 
                                      MAX_MANA = 30 , MIN_HEALTH = 10 , MIN_MANA = 0;
@@ -57,7 +58,11 @@ private void Awake()
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            Jump(false);
+        }
+        if (Input.GetButtonDown("SuperJump"))
+        {
+            Jump(true);
         }
           animator.SetBool(STATE_ON_THE_GROUND, isTouchingTheGround());
         Debug.DrawRay(this.transform.position, Vector3.down * distRay, Color.red  );
@@ -98,13 +103,21 @@ private void Awake()
          GameObject mainCamera = GameObject.Find("Main Camera");
          mainCamera.GetComponent<CameraFollow>().ResetCamearaPostion();
     }
-    void Jump()
+    void Jump(bool superJump)
     {
+         jumpForceFactor  =  jumpForce;
+
+        if (superJump && manaPoints>= SUPERJUMP_COST) 
+        {
+            manaPoints -= SUPERJUMP_COST;
+            jumpForceFactor *= SUPERJUMP_FORCE;
+
+        }
         if(GameManager.singleton.currentGameState == GameState.inGame)
         {
             if (isTouchingTheGround())
         {
-              playerRigidbody.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse );
+              playerRigidbody.AddForce(Vector2.up * jumpForceFactor,ForceMode2D.Impulse );
         }
         }
         
