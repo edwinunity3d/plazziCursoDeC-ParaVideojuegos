@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D enemyRigidbody;
     public bool facingRight = false;
      private Vector3 startPosition;
+     public int daño = 10;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -46,5 +47,21 @@ public class Enemy : MonoBehaviour
         {
             enemyRigidbody.linearVelocity = new Vector2(0, enemyRigidbody.linearVelocity.y);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Coin")
+         {
+          return;   
+        }
+      
+        if(collision.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().CollectHealth(-daño);
+            return;
+        }
+        facingRight = !facingRight;
+
     }
 }

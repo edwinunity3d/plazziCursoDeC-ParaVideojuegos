@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private const string STATE_ON_THE_GROUND = "isOnTheGround";
     [SerializeField, Range(0,10)] private float timeRevivir;
 
-    private int healthPoints, manaPoints;
+    [SerializeField]private int healthPoints, manaPoints;
     public float jumpForceFactor;
 
     public const int INITIAL_HEALTH = 100, INITIAL_MANA = 15, MAX_HEALTH = 200, 
