@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
     public const int INITIAL_HEALTH = 100, INITIAL_MANA = 15, MAX_HEALTH = 200, 
                                      MAX_MANA = 30 , MIN_HEALTH = 10 , MIN_MANA = 0;
 
-                                     
+    public const int SUPERJUMP_COST =  5;
+    public const float SUPERJUMP_FORCE = 1.5F; 
+
+
    
 /// <summary>
 /// Awake is called when the script instance is being loaded.
@@ -147,7 +150,16 @@ private void Awake()
 
     public void Die()
     {
+        float travelledDistance = GetTravelledDistance();
+        float previousMaxDistance = PlayerPrefs.GetFloat("maxscore", 0);
+        if(travelledDistance > previousMaxDistance)
+        {
+            PlayerPrefs.SetFloat("maxscore", travelledDistance);
+        }
+
+
         this.animator.SetBool(STATE_ALIVE, false);
+
         GameManager.singleton.GameOver();
     }
 
@@ -177,5 +189,10 @@ private void Awake()
     public int GetMana()
     {
         return manaPoints;
+    }
+
+    public float GetTravelledDistance()
+    {
+        return this.transform.position.x - startPosition.x;   
     }
 }

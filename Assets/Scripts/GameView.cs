@@ -4,10 +4,11 @@ using UnityEngine.UI;
 public class GameView : MonoBehaviour
 {
     public Text cointText, scoreText, maxScoreText;
+    private PlayerController player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -16,8 +17,8 @@ public class GameView : MonoBehaviour
         if(GameManager.singleton.currentGameState == GameState.inGame)
         {
             int coins = GameManager.singleton.collectedObject;
-            float score = 0;
-            float maxScore = 0;
+            float score = player.GetTravelledDistance();
+            float maxScore = PlayerPrefs.GetFloat("maxscore", 0);
 
 
             cointText.text = coins.ToString();
