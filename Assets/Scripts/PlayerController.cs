@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     public const int INITIAL_HEALTH = 100, INITIAL_MANA = 15, MAX_HEALTH = 200, 
                                      MAX_MANA = 30 , MIN_HEALTH = 10 , MIN_MANA = 0;
+
+                                     
    
 /// <summary>
 /// Awake is called when the script instance is being loaded.
