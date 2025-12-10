@@ -16,16 +16,18 @@ public class Collectable : MonoBehaviour
 
     bool hasBeenCollected = false;
     public int value = 1;
+    private PlayerController player ;
 
     void Awake()
     {
         sprite  = GetComponent<SpriteRenderer>();
         itemCollider = GetComponent<CircleCollider2D>();
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -58,8 +60,12 @@ public class Collectable : MonoBehaviour
             GameManager.singleton.CollectObject(this);
             break;
             case CollectableType.healthPotion:
+           
+            player.CollectHealth(this.value);
             break;
             case CollectableType.manaPotion:
+            
+            player.CollectMana(this.value);
             break;
             
         }
