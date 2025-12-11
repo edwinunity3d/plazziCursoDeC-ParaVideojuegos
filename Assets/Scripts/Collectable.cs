@@ -17,6 +17,7 @@ public class Collectable : MonoBehaviour
     bool hasBeenCollected = false;
     public int value = 1;
     private PlayerController player ;
+    private AudioSource coinSound;
 
     void Awake()
     {
@@ -28,6 +29,7 @@ public class Collectable : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        coinSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,6 +60,8 @@ public class Collectable : MonoBehaviour
         {
             case CollectableType.money:
             GameManager.singleton.CollectObject(this);
+            coinSound.Play();
+            
             break;
             case CollectableType.healthPotion:
            

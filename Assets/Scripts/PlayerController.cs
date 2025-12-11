@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Animator  animator;
 
     Vector3 startPosition; 
+    private AudioSource jumpSound;
 
     private const string STATE_ALIVE = "isAlive";
     private const string STATE_ON_THE_GROUND = "isOnTheGround";
@@ -44,6 +45,7 @@ private void Awake()
 {
     playerRigidbody = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
+    jumpSound = GetComponent<AudioSource>();
 }
 
     void Start()
@@ -117,6 +119,7 @@ private void Awake()
         {
             if (isTouchingTheGround())
         {
+            jumpSound.Play();
               playerRigidbody.AddForce(Vector2.up * jumpForceFactor,ForceMode2D.Impulse );
         }
         }
@@ -183,6 +186,10 @@ private void Awake()
         if(this.healthPoints >= MAX_HEALTH)
         {
             this.healthPoints = MAX_HEALTH;
+        }
+        if(this.healthPoints <= 0)
+        {
+            Die();
         }
     }
     public void CollectMana(int mana)
